@@ -3,10 +3,9 @@ $(document).ready(function () {
 });
 
 // Add Content to Table
-
 $("#addContent").on("click", function (e) {
   e.preventDefault();
-    AddData();
+  AddData();
 });
 
 // Add Data to Table After Confirmation
@@ -29,9 +28,7 @@ function AddData() {
       "</td><td>" +
       qty +
       "</td><td><button>Remove</button></td></tr>";
-
     $(newRowContent).appendTo($("#tableContent"));
-
     clearInputs();
   }
 
