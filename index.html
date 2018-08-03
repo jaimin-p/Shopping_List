@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <title>Shopping List</title>
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/css/bootstrap.min.css'>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -12,11 +13,12 @@
   <div class="container">
     <div class="row">
       <div class="col">
-        <h1 class="display-4 text-center">Shopping List</h1>
+        <h1 class="display-4 text-center"><i class="fa fa-shopping-cart"> <span>Shopping List</span></i></h1>
+        
         <hr>
         <br>
-        <form>
 
+        <form>
           <fieldset class="fieldsetProducts shadow p-3 mb-auto">
             <legend class="scheduler-border">Product</legend>
             <div class="form-group row productSelection">
@@ -33,7 +35,7 @@
 
               <div class="col-md-2 col-sm- text-center p-2">
                 
-                 <button class="btn btn-outline-primary btn-sm" id="addContent">Add</button>
+                 <button class="btn btn-outline-primary" id="addContent"><i class="fa fa-plus"> Add</i></button>
                 <!-- <input type="" value="Add" class="btn btn-outline-primary btn-block" id="addContent"> -->
               </div>
             </div>

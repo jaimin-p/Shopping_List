@@ -27,7 +27,7 @@ function AddData() {
       product +
       "</td><td>" +
       qty +
-      "</td><td><button>Remove</button></td></tr>";
+      '</td><td><button class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"> Remove</i></button></td></tr>';
     $(newRowContent).appendTo($("#tableContent"));
     clearInputs();
   }
