@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Shopping List</title>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/css/bootstrap.min.css'>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <h1 class="display-4 text-center">Shopping List</h1>
+        <hr>
+        <br>
+        <form>
+
+          <fieldset class="fieldsetProducts shadow p-3 mb-auto">
+            <legend class="scheduler-border">Product</legend>
+            <div class="form-group row productSelection justify-content-center">
+              <label for="productName">Product:</label>
+              <div class="col-4">
+                <input type="text" id="productName" required>
+              </div>
+              <label for="productQty">Quantity:</label>
+              <div class="col-4">
+                <input type="number" min="1" id="productQty" required>
+              </div>
+
+              <div class="col-">
+                <input type="submit" value="Add" class="btn btn-primary" id="addContent">
+              </div>
+            </div>
+            <fieldset>
+        </form>
+      </div>
+
+    </div>
+    <br>
+    <br>
+
+    <table class="table table-light table-hover" id="tableContent">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Product</th>
+          <th scope="col">Qty</th>
+          <th scope="col">Remove</th>
+        </tr>
+        <tbody id="tbodyContent"></tbody>
+    </table>
+
+  </div>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+  <script src="js/index.js"></script>
+</body>
+
+</html>
