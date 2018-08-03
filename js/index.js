@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  displayHeader();
+  tableDataExist();
 });
 
 // Add Content to Table
@@ -70,16 +70,18 @@ function clearInputs() {
 //Remove Button Functionlity
 
 $("#tableContent").on("click", "button", function () {
-  $(this)
-    .closest("tr")
-    .fadeOut(500, function () {
-      $(this).remove();
-      displayHeader();
-    });
+  
+      if(confirm("Are you sure ?"))
+      {
+        $(this).closest("tr").fadeOut(500, function () {
+          $(this).remove();
+          tableDataExist();
+            });
+      }
 });
 
 // Check Data Exist in Table
-function displayHeader() {
+function tableDataExist() {
   var tabledata = $("#tableContent tbody tr").length;
   if (tabledata == 0) {
     $("#tableContent")
