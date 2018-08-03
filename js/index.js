@@ -6,11 +6,7 @@ $(document).ready(function () {
 
 $("#addContent").on("click", function (e) {
   e.preventDefault();
-  if (confirm("Proceed to Add ? ")) {
     AddData();
-  } else {
-    clearInputs();
-  }
 });
 
 // Add Data to Table After Confirmation
@@ -19,7 +15,7 @@ function AddData() {
   var qty = $("#productQty").val();
 
   // Data Validation
-  if (product != "" && qty != "") {
+  if (product != "" && qty != "" && confirm("Proceed to Add ? ")) {
     $("#productQty").removeClass("border border-danger");
     $("#productName").removeClass("border border-danger");
 
@@ -70,7 +66,7 @@ function clearInputs() {
 //Remove Button Functionlity
 
 $("#tableContent").on("click", "button", function () {
-  
+
       if(confirm("Are you sure ?"))
       {
         $(this).closest("tr").fadeOut(500, function () {
