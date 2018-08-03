@@ -19,18 +19,22 @@
 
           <fieldset class="fieldsetProducts shadow p-3 mb-auto">
             <legend class="scheduler-border">Product</legend>
-            <div class="form-group row productSelection justify-content-center">
-              <label for="productName">Product:</label>
-              <div class="col-4">
+            <div class="form-group row productSelection">
+        
+              <div class="col-md-5 col-sm- text-center p-2">
+                <label for="productName">Product:</label>
                 <input type="text" id="productName" required>
               </div>
-              <label for="productQty">Quantity:</label>
-              <div class="col-4">
+              
+              <div class="col-md-5 col-sm- text-center p-2">
+                <label for="productQty">Quantity:</label>
                 <input type="number" min="1" id="productQty" required>
               </div>
 
-              <div class="col-">
-                <input type="submit" value="Add" class="btn btn-primary" id="addContent">
+              <div class="col-md-2 col-sm- text-center p-2">
+                
+                 <button class="btn btn-outline-primary btn-sm" id="addContent">Add</button>
+                <!-- <input type="" value="Add" class="btn btn-outline-primary btn-block" id="addContent"> -->
               </div>
             </div>
             <fieldset>
