@@ -1,11 +1,20 @@
-$(document).ready(function() {
+$(document).ready(function () {
   displayHeader();
 });
 
 // Add Content to Table
 
-$("#addContent").on("click", function(e) {
+$("#addContent").on("click", function (e) {
   e.preventDefault();
+  if (confirm("Proceed to Add ? ")) {
+    AddData();
+  } else {
+    clearInputs();
+  }
+});
+
+// Add Data to Table After Confirmation
+function AddData() {
   var product = $("#productName").val();
   var qty = $("#productQty").val();
 
@@ -49,7 +58,7 @@ $("#addContent").on("click", function(e) {
     $("#productName").addClass("border border-danger");
     clearInputs();
   }
-});
+}
 
 // Clear Input Fields
 
@@ -60,10 +69,10 @@ function clearInputs() {
 
 //Remove Button Functionlity
 
-$("#tableContent").on("click", "button", function() {
+$("#tableContent").on("click", "button", function () {
   $(this)
     .closest("tr")
-    .fadeOut(500, function() {
+    .fadeOut(500, function () {
       $(this).remove();
       displayHeader();
     });
