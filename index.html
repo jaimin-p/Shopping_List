@@ -13,8 +13,12 @@
   <div class="container">
     <div class="row">
       <div class="col">
-        <h1 class="display-4 text-center text-info"><i class="fa fa-shopping-cart"> <span>Shopping List</span></i></h1>
-        
+        <h1 class="display-4 text-center text-info">
+          <i class="fa fa-shopping-cart">
+            <span>Shopping List</span>
+          </i>
+        </h1>
+
         <hr>
         <br>
 
@@ -22,24 +26,26 @@
           <fieldset class="fieldsetProducts shadow p-3 mb-auto">
             <legend class="scheduler-border">Product</legend>
             <div class="form-group row productSelection">
-        
               <div class="col-md-5 col-sm- text-center p-2">
                 <label for="productName">Product:</label>
                 <input type="text" id="productName" required>
               </div>
-              
+
               <div class="col-md-5 col-sm- text-center p-2">
                 <label for="productQty">Quantity:</label>
                 <input type="number" min="1" id="productQty" required>
               </div>
 
               <div class="col-md-2 col-sm- text-center p-2">
-                
-                 <button class="btn btn-outline-primary" id="addContent"><i class="fa fa-plus"> Add</i></button>
+
+                <button class="btn btn-outline-primary" id="addContent">
+                  <i class="fa fa-plus"> Add</i>
+                </button>
                 <!-- <input type="" value="Add" class="btn btn-outline-primary btn-block" id="addContent"> -->
               </div>
             </div>
             <fieldset>
+            </fieldset>
         </form>
       </div>
 
@@ -52,6 +58,7 @@
         <tr>
           <th scope="col">Product</th>
           <th scope="col">Qty</th>
+          <th scope="col">Edit</th>
           <th scope="col">Remove</th>
         </tr>
         <tbody id="tbodyContent"></tbody>

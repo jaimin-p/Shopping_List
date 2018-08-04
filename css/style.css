@@ -6,3 +6,17 @@
     font-size: 18px;
 }
 
+#removeBtn,#editBtn
+{
+    opacity: 0.5;
+}
+
+#removeBtn:hover{
+    opacity: 1;
+    transition:  opacity 0.5s;
+}
+
+#editBtn:hover{
+    opacity: 1;
+    transition:  opacity 0.5s;
+}

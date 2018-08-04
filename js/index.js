@@ -1,3 +1,6 @@
+var updateFlag = false;
+var prevContent = [];
+
 $(document).ready(function () {
   tableDataExist();
 });
@@ -5,53 +8,85 @@ $(document).ready(function () {
 // Add Content to Table
 $("#addContent").on("click", function (e) {
   e.preventDefault();
-  AddData();
+  e.stopPropagation();
+
+  if (updateFlag && checkEmpty()) {
+
+    var replaceProduct = $("#productName").val();
+    var replaceQty = $("#productQty").val();
+
+    ReplaceCellContent(prevContent[0], replaceProduct);
+    ReplaceCellContent(prevContent[1], replaceQty);
+
+    clearInputs();
+    updateFlag = false;
+    prevContent = [];
+  }
+  else if (checkEmpty()) {
+    var product = $("#productName").val();
+    var qty = $("#productQty").val();
+    AddData(product, qty);
+  }
+
+
 });
 
-// Add Data to Table After Confirmation
-function AddData() {
-  var product = $("#productName").val();
-  var qty = $("#productQty").val();
 
-  // Data Validation
-  if (product != "" && qty != "" && confirm("Proceed to Add ? ")) {
+function ReplaceCellContent(find, replace) {
+  try {
+    $('td:contains("' + find + '")').html(replace);
+  }
+  catch{
+    console.log("error");
+  }
+}
+
+// Add Data to Table After Confirmation
+function AddData(product, qty) {
+
+
+  if (confirm("Proceed to Add ? ")) {
+
     $("#productQty").removeClass("border border-danger");
     $("#productName").removeClass("border border-danger");
 
-    $("#tableContent")
-      .find("thead")
-      .show();
-    $(newRowContent).appendTo($("#tableContent"));
+    $("#tableContent").find("thead").show();
+
     var newRowContent =
       "<tr><td>" +
       product +
       "</td><td>" +
       qty +
-      '</td><td><button class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"> Remove</i></button></td></tr>';
+      '</td>' +
+      '<td><i class="fa fa-pencil fa-2x text-warning" id="editBtn"></i></td>' +
+      '<td><i class="fa fa-times-circle fa-2x text-danger" id="removeBtn"></i></td>' +
+      '</tr>'
+      ;
+
     $(newRowContent).appendTo($("#tableContent"));
-    clearInputs();
-  }
 
-  // Data Validation
-  else if (product == "" && qty != "") {
-    $("#productName").addClass("border border-danger");
     clearInputs();
-  }
-
-  // Data Validation
-  else if (qty == "" && product != "") {
-    $("#productQty").val("");
-    $("#productName").val("");
-    $("#productQty").addClass("border border-danger");
   }
 
   // Data Validation
   else {
-    $("#productQty").addClass("border border-danger");
-    $("#productName").addClass("border border-danger");
+    highlightEmpty();
     clearInputs();
   }
 }
+
+function checkEmpty() {
+
+  if ($("#productQty").val() != "" && $("#productName").val() != "") {
+    return true;
+
+  }
+  else if ($("#productQty").val() == "" || $("#productName").val() == "") {
+    return false;
+
+  }
+}
+
 
 // Clear Input Fields
 
@@ -60,17 +95,70 @@ function clearInputs() {
   $("#productName").val("");
 }
 
+
+$("#productName").keyup(function () {
+  if ($("#productName").val().length > 0) {
+
+    $("#productName").addClass("border border-success");
+    $("#productName").removeClass("border border-danger");
+  }
+  else {
+    $("#productName").blur();
+    $("#productName").addClass("border border-danger");
+    $("#productName").removeClass("border border-success");
+  }
+});
+
+
+$("#productQty").keyup(function () {
+  if ($("#productQty").val().length > 0) {
+    $("#productQty").addClass("border border-success");
+    $("#productQty").removeClass("border border-danger");
+  }
+  else {
+    $("#productQty").blur();
+    $("#productQty").addClass("border border-danger");
+    $("#productQty").removeClass("border border-success");
+  }
+});
+
+
+//Edit Button
+
+$("#tableContent").on("click", "#editBtn", function (e) {
+  e.stopPropagation();
+
+  updateFlag = true;
+
+  $("#productName").val($(this).closest("tr").find("td:nth-child(1)").text());
+  $("#productQty").val($(this).closest("tr").find("td:nth-child(2)").text());
+
+  prevContent.push($("#productName").val($(this).closest("tr").find("td:nth-child(1)").text()).val());
+  prevContent.push($("#productQty").val($(this).closest("tr").find("td:nth-child(2)").text()).val());
+
+  // console.log(prevContent["oldProduct"].val());
+  // console.log(prevContent["oldQty"].val());
+
+  //  oldProduct =  $("#productName").val($(this).closest("tr").find("td:nth-child(1)").text());
+  //  oldQty =  $("#productQty").val($(this).closest("tr").find("td:nth-child(2)").text());   
+});
+
 //Remove Button Functionlity
 
-$("#tableContent").on("click", "button", function () {
+$("#tableContent").on("click", "#removeBtn", function () {
 
-      if(confirm("Are you sure ?"))
-      {
-        $(this).closest("tr").fadeOut(500, function () {
-          $(this).remove();
-          tableDataExist();
-            });
-      }
+  if (confirm("Are you sure ?")) {
+    $(this).closest("tr").fadeOut(500, function () {
+      $(this).remove();
+      tableDataExist();
+    });
+  }
+
+  // $("#productName").val($(this).closest("tr").find("td:nth-child(1)").text());
+  // $("#productQty").val($(this).closest("tr").find("td:nth-child(2)").text());
+
+  //  console.log($(this).closest("tr").find("td:nth-child(1)").text());
+  //  console.log($(this).closest("tr").find("td:nth-child(2)").text());       
 });
 
 // Check Data Exist in Table
